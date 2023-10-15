@@ -1,0 +1,134 @@
+import java.util.LinkedList;
+
+// Step 1: Abstract class or interface
+abstract class Shape {
+    public abstract void draw();
+}
+
+// Step 2: Concrete classes for Square, Rectangle, and Triangle
+class Square extends Shape {
+    private double sideLength;
+
+    public Square(double sideLength) {
+        this.sideLength = sideLength;
+    }
+
+    public double getSideLength() {
+        return sideLength;
+    }
+
+    public void setSideLength(double sideLength) {
+        this.sideLength = sideLength;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Square with side length: " + sideLength);
+    }
+
+    @Override
+    public String toString() {
+        return "Square [Side Length: " + sideLength + "]";
+    }
+}
+
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Rectangle with length: " + length + " and width: " + width);
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle [Length: " + length + ", Width: " + width + "]";
+    }
+}
+
+class Triangle extends Shape {
+    private double base;
+    private double height;
+
+    public Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    public double getBase() {
+        return base;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setBase(double base) {
+        this.base = base;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Triangle with base: " + base + " and height: " + height);
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle [Base: " + base + ", Height: " + height + "]";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Step 3: Create a linked list and add 100 elements (shapes)
+        LinkedList<Shape> shapeList = new LinkedList<>();
+
+        for (int i = 0; i < 100; i++) {
+            int shapeType = (int) (Math.random() * 3); // Randomly select a shape type (0, 1, or 2)
+
+            // Generate random dimensions for the shapes
+            double dimension1 = Math.random() * 10 + 1;
+            double dimension2 = Math.random() * 10 + 1;
+
+            // Create and add a shape to the list
+            if (shapeType == 0) {
+                shapeList.add(new Square(dimension1));
+            } else if (shapeType == 1) {
+                shapeList.add(new Rectangle(dimension1, dimension2));
+            } else {
+                shapeList.add(new Triangle(dimension1, dimension2));
+            }
+        }
+
+        // Step 4: Print the shapes in the list
+        for (Shape shape : shapeList) {
+            shape.draw();
+        }
+    }
+}
